@@ -1,1 +1,0 @@
-# sdlm-hospital-booking
