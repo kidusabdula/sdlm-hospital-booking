@@ -1,41 +1,27 @@
-import type { Metadata } from "next";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
-import "./globals.css";
-import { Inter } from "next/font/google";
+// app/layout.tsx
+import './globals.css';
+import { ClerkProvider } from '@clerk/nextjs';
+import { Inter } from 'next/font/google';
+import NavBar from '@/components/NavBar';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
-export const metadata:Metadata= {
-  title: "SDLM Hospital Appointment Booking",
-  description: "Book appointments with ease at SDLM Hospital",
+export const metadata = {
+  title: 'SDLM Hospital Appointment Booking',
+  description: 'Book appointments with ease at SDLM Hospital',
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <header className="flex justify-end items-center p-4 gap-4 h-16">
-            <SignedOut>
-              <SignInButton />
-              <SignUpButton />
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </header>
-          {children}
+          <NavBar />
+          <main className="min-h-screen bg-gray-50">{children}</main>
         </body>
       </html>
     </ClerkProvider>
